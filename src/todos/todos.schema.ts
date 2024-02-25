@@ -1,13 +1,15 @@
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-import { Todo } from './todos.interface';
+export type TodoDocument = Todo & Document;
 
-export const TodoSchema = new mongoose.Schema<Todo>(
-  {
-    title: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true },
-);
+@Schema()
+export class Todo {
+  @Prop({ required: true })
+  title: string;
+
+  @Prop({ default: false })
+  completed: boolean;
+}
+
+export const TodoSchema = SchemaFactory.createForClass(Todo);
