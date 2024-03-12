@@ -30,4 +30,8 @@ export class TodosService {
   async remove(id: string): Promise<Todo> {
     return this.todoModel.findByIdAndDelete(id).exec();
   }
+
+  async todoSchedular(): Promise<any> {
+    return [];
+  }
 }
